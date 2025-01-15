@@ -5,16 +5,13 @@ chrome.storage.sync.get(["enabled"], (data) => {
   enabled = data.enabled ?? true; // Default to enabled if not set
 });
 
-// Listen for key presses
-document.addEventListener("keydown", (event) => {
+// Listen for all key presses
+document.addEventListener("keydown", () => {
   if (!enabled) return;
 
-  // Define the key and sound
-  const keyToTrigger = "a"; // Change this to your preferred key
-  if (event.key.toLowerCase() === keyToTrigger) {
-    const audio = new Audio(chrome.runtime.getURL("sound.mp3"));
-    audio.play();
-  }
+  // Play the sound for any key press
+  const audio = new Audio(chrome.runtime.getURL("switch-button.mp3"));
+  audio.play();
 });
 
 // Listen for messages to toggle the state
